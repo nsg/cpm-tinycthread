@@ -53,13 +53,12 @@ CPM_ExportAdditionalIncludeDir("${REPO_SOURCE_DIR}")
 # Library setup
 #-----------------------------------------------------------------------
 
-file(RENAME
+file(
+  COPY
   ${REPO_SOURCE_DIR}/tinycthread/source/tinycthread.c
-  ${REPO_SOURCE_DIR}/tinycthread/tinycthread.c)
-
-file(RENAME
   ${REPO_SOURCE_DIR}/tinycthread/source/tinycthread.h
-  ${REPO_SOURCE_DIR}/tinycthread/tinycthread.h)
+  DESTINATION
+  ${REPO_SOURCE_DIR}/tinycthread/)
 
 file (GLOB Sources
   "${REPO_SOURCE_DIR}/tinycthread/tinycthread.c"
