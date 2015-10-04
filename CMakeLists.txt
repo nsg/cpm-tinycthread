@@ -50,20 +50,20 @@ CPM_EnsureRepoIsCurrent(
 CPM_ExportAdditionalIncludeDir("${REPO_SOURCE_DIR}")
 
 #-----------------------------------------------------------------------
-# Source
-#-----------------------------------------------------------------------
-
-# Globbing has some downsides, but the advantages outweigh the
-# disadvantages.
-file (GLOB Sources
-  "${REPO_SOURCE_DIR}/tinycthread/source/tinycthread.c"
-  "${REPO_SOURCE_DIR}/tinycthread/source/tinycthread.h"
-  )
-
-#-----------------------------------------------------------------------
 # Library setup
 #-----------------------------------------------------------------------
 
-# Build the library.
+file(RENAME
+  ${REPO_SOURCE_DIR}/tinycthread/source/tinycthread.c
+  ${REPO_SOURCE_DIR}/tinycthread/tinycthread.c)
+
+file(RENAME
+  ${REPO_SOURCE_DIR}/tinycthread/source/tinycthread.h
+  ${REPO_SOURCE_DIR}/tinycthread/tinycthread.h)
+
+file (GLOB Sources
+  "${REPO_SOURCE_DIR}/tinycthread/tinycthread.c"
+  "${REPO_SOURCE_DIR}/tinycthread/tinycthread.h"
+  )
+
 add_library(${CPM_LIB_TARGET_NAME} ${Sources})
-CPM_ExportAdditionalIncludeDir("${CMAKE_CURRENT_SOURCE_DIR}/source/")
